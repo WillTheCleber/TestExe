@@ -36,9 +36,11 @@ def CadCliente():
         cadastro=dadosCliente(nomeCadastro,cpfCadastro,contatoCadastro)
         print("Aguarde registrando no banco de dados.")
 
+
+        conn= pymysql.connect(db="banco",user="python",passwd="python123",host="localhost")
         time.sleep(1)
         # REGISTRANDO NO BANCO DE DADOS
-        conn= pymysql.connect(db="banco",user="python",passwd="python123",host="localhost")
+        # conn= pymysql.connect(db="banco",user="python",passwd="python123",host="localhost")
         cursor = conn.cursor()
         cursor.execute('insert into cliente_poupanca(nome,cpf,contato) values(%s,%s,%s)',(cadastro.nome,cadastro.cpf,cadastro.contato))
         
@@ -60,6 +62,7 @@ def CadClienteCredito():
     cpfCadastro= input("Digite o CPF do cliente: ")
     contatoCadastro= input("Digite o contato do cliente: ")
     cepCadastro= input("Insira o CEP do cliente: ")
+    statusCadastro= True
 
 
     #BLOCO 2
@@ -69,29 +72,30 @@ Nome: %s
 CPF: %s
 Contato: %s
 CEP: %s
-Aperte apenas enter para cancelar.""",(nomeCadastro,cpfCadastro,contatoCadastro,cepCadastro)) #exibindo as variaveis para confirmação)
+Aperte apenas enter para confirmar.""",(nomeCadastro,cpfCadastro,contatoCadastro,statusCadastro)) #exibindo as variaveis para confirmação)
     #CONFIRMAÇÃO
 
 
     #BLOCO 3:
     #EXECUÇÃO
     confirma= bool(input())
-    if confirma== True:
-
-        #SALVANDO NO BANCO DE DADOS #######################
-        cursor = conn.cursor()
-        cursor.execute('insert into cliente_credito(nome,cpf,contato,cep) values(%s,%s,%s,%s)',(nomeCadastro,cpfCadastro,contatoCadastro,cepCadastro))
-        conn.commit()
-        conn.close()
-        # REGISTRANDO NO BANCO DE DADOS##############
+    if confirma== False:
 
         #Criando o objeto e atribuindo valor nele.
-        cadastro= clienteCredito()
-        cadastro.nome=(nomeCadastro)
-        cadastro.cpf=(cpfCadastro)
-        cadastro.contato(contatoCadastro)
-        cadastro.CEP(cepCadastro)
+        cadastro= clienteCredito(nomeCadastro,cpfCadastro,contatoCadastro,cepCadastro,status=True)
+        # cadastro.nome=(nomeCadastro)
+        # cadastro.cpf=(cpfCadastro)
+        # cadastro.contato(contatoCadastro)
+        # cadastro.CEP(cepCadastro)
         cadastro.status(True) #Ativando a conta
+
+        conn= pymysql.connect(db="banco",user="python",passwd="python123",host="localhost")
+        time.sleep(1)
+        #REGISTRANDO NO BD
+
+        cursor = conn.cursor()
+        cursor.execute('insert into cliente_credito(nome,cpf,contato,cep) values(%s,%s,%s)',(cadastro.nome,cadastro.cpf,cadastro.contato,cadastro.CEP))
+        cursor.close()
         
         #finalizando ação, PRINT
         print("Cliente cadastrado com sucesso.")

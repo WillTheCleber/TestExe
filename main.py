@@ -3,7 +3,7 @@ from classe_credito import clienteCredito
 from comandos_funcoes import CadCliente, CadClienteCredito
 import pymysql
 
-conn= pymysql.connect(db="dbpython",user="python",passwd="python123",host="localhost")
+# conn= pymysql.connect(db="dbpython",user="python",passwd="python123",host="localhost")
 
 #Aqui vou começar a brincar criando um menu para a pessoa poder interagir
 
@@ -19,8 +19,8 @@ while t == True:
 
         if opcao == 1:
             #MENU DENTRO DO MENU (Perguntando se a conta sera de credito)
-            print("O conta será de credito?")
-            subopcao=bool(input("Aperte apenas enter para negar. "))
+            print("A conta sera poupança??")
+            subopcao=bool(input("Aperte enter para confirmar. "))
 
             #CADASTRANDO CONTA POUPANÇA
             if subopcao==False:

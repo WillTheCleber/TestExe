@@ -14,7 +14,6 @@ class clienteCredito(dadosCliente):
         super().__init__(nome, cpf, contato)
         print("Cliente cadastrado com sucesso.") #A base principal é a conta poupança
 
-    linhaCredito= 500
     
     def dadosExtras(self,CEP,status): #Dados extras para info
         self.CEP= CEP
