@@ -13,11 +13,12 @@ class dadosCliente():
     #logo a baixo vou criar uns metodos aqui para dps tentar fazer umas interações legais. (Tenho dificuldade com polimorfismo) 
     
     #METODO DE PAGAMENTO
+    #Nesse metodo vou pegar o saldo da conta e diminuir com um valor que o operador solicitar:
     def pagamento(self):
         try:
-            conta= float(input("Digite a quantidade a ser paga: "))
-            test =self.saldo-conta
-            if test >0:
+            conta= float(input("Digite a quantidade a ser paga: ")) #pegando a conta
+            test =self.saldo-conta #calculo
+            if test >0: #Verificação se o saldo vai ficar negativo:
                 self.saldo = self.saldo-conta
                 print("Seu novo saldo é R$ %s",(self.saldo))
             else:
@@ -28,6 +29,7 @@ class dadosCliente():
             print("Erro desconhecido.")
     
     #METODO DE DEPOSITO
+    #Nesse metodo vou pegar o saldo da conta e aumentar com um valor que o operador solicitar
     def deposito(self):
         try:
             deposito= float(input("Digite a quantidade depositada: "))
@@ -38,4 +40,3 @@ class dadosCliente():
         except:
             print("Erro não identificado.")
     
-    #METODO DE 

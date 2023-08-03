@@ -6,14 +6,9 @@ conn= pymysql.connect(db="banco",user="python", passwd="python123",host="localho
 
 cursor = conn.cursor()
 
-cursor.execute('''create table cadastro_clientes(
-id integer not null primary key auto_increment,
-nome varchar(100) not null,
-sobrenome varchar(100) not null,
-cpf varchar(11),
-conta int
-)''')
+cursor.execute('''insert into cliente_poupanca(nome,cpf,contato)
+                values ("Teste", "5555","contato")''')
 
-# conn.commit()
+conn.commit()
 
 conn.close
