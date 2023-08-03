@@ -3,7 +3,7 @@ import datetime
 class dadosCliente():
     dataCad= datetime.datetime
     saldo = 100 #atributo de classe 
-    def __init__(self,nome,cpf,contato):
+    def __init__(self,nome='',cpf='',contato=''):
         self.nome=nome
         self.cpf=cpf
         self.contato=contato
@@ -39,4 +39,6 @@ class dadosCliente():
             print("Digite um numero.")
         except:
             print("Erro não identificado.")
+
+    
     

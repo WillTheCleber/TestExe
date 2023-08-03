@@ -1,6 +1,6 @@
 from classe_pai import dadosCliente
 from classe_credito import clienteCredito
-from comandos_funcoes import CadCliente, CadClienteCredito
+from comandos_funcoes import metodos
 import pymysql
 
 conn= pymysql.connect(db="dbpython",user="python",passwd="python123",host="localhost")
@@ -14,14 +14,15 @@ if opcao == 1:
 
             #CADASTRANDO CONTA POUPANÇA
             if subopcao==False:
-                CadCliente()
+                
+                metodos.CadCliente()
 
 
 
             #CADASTRANDO CONTA CREDITO  
             elif subopcao == True:
-                CadClienteCredito()
-                
+                metodos.CadClienteCredito()
+
 
             else:
                 print("Erro na seleção de cliente.")
